@@ -8,6 +8,7 @@ include"./config/config.php";
  * Database connection here
  * */ 
 include"./lib/Database.php";
+include"./helpers/formats.php";
 
 // header php include here
 include"./inc/header.php";
@@ -21,6 +22,7 @@ include"./inc/slider.php";
 */
 
 $DB = new Database();
+$format = new Format();
 
 	
 
@@ -38,9 +40,9 @@ $DB = new Database();
 			?>
 			<div class="samepost clear">
 				<h2><a href="post.php?id=<?php echo $posts['id']; ?>"><?php echo $posts['title']; ?></a></h2>
-				<h4><?php echo $posts['date']; ?> By <a href="#"><?php echo $posts['author']; ?></a></h4>
+				<h4><?php echo $format -> getDate($posts['date']); ?> By <a href="#"><?php echo $posts['author']; ?></a></h4>
 				 <a href="#"><img src="images/<?php echo $posts['image']; ?>" alt="post image"/></a>
-				 <?php echo $posts['body']; ?>
+				 <?php echo $format -> textCount($posts['body']); ?>
 				<div class="readmore clear">
 					<a href="post.php?id=<?php echo $posts['id']; ?>">Read More</a>
 				</div>

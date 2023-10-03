@@ -12,3 +12,7 @@
         blog_post, users, categorys
 
     Insert Demo Some Part create db_blog Database
+
+
+#### Step 03
+    Get data and successfully output result mySQL Oparation
