@@ -1,47 +1,56 @@
 <?php 
+/**
+ * Database connection here
+ * */ 
+include"./config/config.php";
+
+/**
+ * Database connection here
+ * */ 
+include"./lib/Database.php";
+
 // header php include here
 include"./inc/header.php";
 // silider include 
 include"./inc/slider.php";
 
+
+
+/**
+ * object declaration here
+*/
+
+$DB = new Database();
+
+	
+
+	
 ?>
 
 	<div class="contentsection contemplete clear">
 		<div class="maincontent clear">
-			<div class="samepost clear">
-				<h2><a href="">Our post title here</a></h2>
-				<h4>April 10, 2016, 12:30 PM, By <a href="#">Delowar</a></h4>
-				 <a href="#"><img src="images/post1.jpg" alt="post image"/></a>
-				<p>
-					Some text will be go here. Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here. Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.
-				</p>
-				<div class="readmore clear">
-					<a href="post.html">Read More</a>
-				</div>
-			</div>
-			<div class="samepost clear">
-				<h2><a href="">Our post title here</a></h2>
-				<h4>April 10, 2016, 12:30 PM, By <a href="#">Delowar</a></h4>
-				 <img src="images/post2.png" alt="post image"/>
-				<p>
-					Some text will be go here. Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here. Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.
-				</p>
-				<div class="readmore clear">
-					<a href="post.html">Read More</a>
-				</div>
-			</div>
-			<div class="samepost clear">
-				<h2>Our post title here</h2>
-				<h4>April 10, 2016, 12:30 PM, By <a href="#">Delowar</a></h4>
-				 <img src="images/post1.jpg" alt="post image"/>
-				<p>
-					Some text will be go here. Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here. Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.
-				</p>
-				<div class="readmore clear">
-					<a href="post.html">Read More</a>
-				</div>
-			</div>
+			<?php 
+				$query = "SELECT * FROM blog_post";
+				$results = $DB -> select($query);
 
+				if($results){
+					while($posts = $results -> fetch_assoc()){
+			?>
+			<div class="samepost clear">
+				<h2><a href="post.php?id=<?php echo $posts['id']; ?>"><?php echo $posts['title']; ?></a></h2>
+				<h4><?php echo $posts['date']; ?> By <a href="#"><?php echo $posts['author']; ?></a></h4>
+				 <a href="#"><img src="images/<?php echo $posts['image']; ?>" alt="post image"/></a>
+				 <?php echo $posts['body']; ?>
+				<div class="readmore clear">
+					<a href="post.php?id=<?php echo $posts['id']; ?>">Read More</a>
+				</div>
+			</div>
+			<?php } ?> <!-- while loop ending here now-->
+			<?php  }
+				else{
+					header("location:404.php");
+				} 
+			?>
 		</div>
 		<?php include"./inc/sidebar.php"; ?>
 	</div>
