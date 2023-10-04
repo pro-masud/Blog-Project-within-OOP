@@ -1,3 +1,22 @@
+<?php 
+/**
+ * Database connection here
+ * */ 
+include"./config/config.php";
+
+/**
+ * Database connection here
+ * */ 
+include"./lib/Database.php";
+include"./helpers/formats.php";
+
+/**
+ * Database connection and helper Objects and functions
+ * */ 
+$DB = new Database();
+$format = new Format();
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
