@@ -2,11 +2,17 @@
     <div class="samesidebar clear">
         <h2>Categories</h2>
             <ul>
-                <li><a href="#">Category One</a></li>
-                <li><a href="#">Category Two</a></li>
-                <li><a href="#">Category Three</a></li>
-                <li><a href="#">Category Four</a></li>
-                <li><a href="#">Category Five</a></li>						
+            <?php 
+                $catQuery = "SELECT * FROM blog_category limit 6";
+				$allCat = $DB -> select($catQuery);
+
+				if($allCat){
+					while($categroy = $allCat -> fetch_assoc()){
+                        ?>
+                <li><a href="posts.php?id=<?php echo $categroy['id']; ?>"><?php echo $categroy['name']; ?></a></li>
+                <?php } }else{ ?>	
+                    <li>No Category Insert</li>
+                <?php } ?>				
             </ul>
     </div>
     

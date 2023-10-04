@@ -7,12 +7,7 @@ include"./inc/slider.php";
 /**
  * object declaration here
 */
-
-	
-
-	
 ?>
-
 	<div class="contentsection contemplete clear">
 		<div class="maincontent clear">
 			<!-- pagination limit start -->
@@ -45,8 +40,6 @@ include"./inc/slider.php";
 			</div>
 			<?php } ?> <!-- while loop ending here now-->
 
-
-				
 			<!-- pagination start -->
 			<?php 
 			$query = "SELECT * FROM blog_post";
@@ -64,8 +57,6 @@ include"./inc/slider.php";
 				?>
 			<?php echo "<a href='index.php?page=".$totalPage."'>" . 'Last Page' . "</a> </span>"; ?>
 			<!-- pagination end -->
-
-
 
 			<?php  }
 				else{
