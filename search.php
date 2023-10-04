@@ -11,13 +11,13 @@ include"./inc/header.php";
 		<div class="maincontent clear">
         <?php 
             $id; 
-            if(!isset($_GET['id']) || $_GET['id'] == null){
+            if(!isset($_GET['search']) || $_GET['search'] == null){
                 header("location: 404.php");
             }else{
-                $id = $_GET['id'];
+                $search = $_GET['search'];
             }
 
-            $query = "SELECT * FROM blog_post WHERE cat = '$id'";
+            $query = "SELECT * FROM blog_post WHERE title LIKE '%$search%'  OR body LIKE '%$search%'";
 				$results = $DB -> select($query);
 
 				if($results){

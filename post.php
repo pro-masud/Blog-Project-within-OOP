@@ -29,7 +29,7 @@ include"./inc/header.php";
 					<?php
 					$catId = $singlePost['cat'];
 
-					$queryCat = "SELECT * FROM blog_post WHERE cat = '$catId' order by rdom() limit 6";	
+					$queryCat = "SELECT * FROM blog_post WHERE cat = '$catId' order by rand() limit 6";	
 					$relatedPost = $DB -> select($queryCat);
 					if($relatedPost){
 					while($singleRelatedPost = $relatedPost -> fetch_assoc()){
