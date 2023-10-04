@@ -15,8 +15,6 @@ include"./inc/header.php";
 // silider include 
 include"./inc/slider.php";
 
-
-
 /**
  * object declaration here
 */
@@ -31,8 +29,21 @@ $format = new Format();
 
 	<div class="contentsection contemplete clear">
 		<div class="maincontent clear">
+			<!-- pagination limit start -->
 			<?php 
-				$query = "SELECT * FROM blog_post";
+				$post_per_page = 2;
+				if(isset($_GET['page'])){
+					$page = $_GET['page'];
+				}else{
+					$page = 1;
+				}
+
+				$start_page = ($page -1) * $post_per_page;
+			
+			?>
+			<!-- pagination limit end -->
+			<?php 
+				$query = "SELECT * FROM blog_post limit $start_page, $post_per_page";
 				$results = $DB -> select($query);
 
 				if($results){
@@ -48,6 +59,29 @@ $format = new Format();
 				</div>
 			</div>
 			<?php } ?> <!-- while loop ending here now-->
+
+
+				
+			<!-- pagination start -->
+			<?php 
+			$query = "SELECT * FROM blog_post";
+			$results = $DB -> select($query);
+			$totalRows = mysqli_num_rows($results);
+			$totalPage = ceil($totalRows/$post_per_page);
+			?>
+			<?php echo "<span class='pagination'> <a href='index.php?page=1'>" . 'Frist Page' . "</a>"; ?>
+				<?php 
+					for($i = 1; $i<=$totalPage; $i++ ){
+						?>
+							<a href="index.php?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+						<?php 
+					}
+				?>
+			<?php echo "<a href='index.php?page=".$totalPage."'>" . 'Last Page' . "</a> </span>"; ?>
+			<!-- pagination end -->
+
+
+
 			<?php  }
 				else{
 					header("location:404.php");

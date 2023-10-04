@@ -15,6 +15,7 @@ class Format {
     public function textCount($bodyText, $limit = 400){
         $text = $bodyText . " ";
         $text  = substr($bodyText, 0, $limit);
+        $text  = substr($bodyText, 0, strripos($text, ' '));
         $text = $text . "...";
         return $text;
     }   
