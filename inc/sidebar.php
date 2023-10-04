@@ -18,28 +18,18 @@
     
     <div class="samesidebar clear">
         <h2>Latest articles</h2>
+        <?php 
+                $query = "SELECT * FROM blog_post limit 4";	
+                $posts = $DB -> select($query);
+                if($posts){
+                while($singlePost = $posts -> fetch_assoc()){
+        ?>
             <div class="popular clear">
-                <h3><a href="#">Post title will be go here..</a></h3>
-                <a href="#"><img src="images/post1.jpg" alt="post image"/></a>
-                <p>Sidebar text will be go here.Sidebar text will be go here.Sidebar text will be go here.Sidebar text will be go here.</p>	
+                <h3><a href=""><?php echo $singlePost['title']; ?></a></h3>
+                <a href="post.php?id=<?php echo $singlePost['id']; ?>"><img src="admin/uploads/<?php echo $singlePost['image']; ?>" alt="MyImage"/></a>
+                <?php echo $format -> textCount($singlePost['body'], 120); ?>
             </div>
-            
-            <div class="popular clear">
-                <h3><a href="#">Post title will be go here..</a></h3>
-                <a href="#"><img src="images/post1.jpg" alt="post image"/></a>
-                <p>Sidebar text will be go here.Sidebar text will be go here.Sidebar text will be go here.Sidebar text will be go here.</p>	
-            </div>
-            
-            <div class="popular clear">
-                <h3><a href="#">Post title will be go here..</a></h3>
-                <a href="#"><img src="images/post1.jpg" alt="post image"/></a>
-                <p>Sidebar text will be go here.Sidebar text will be go here.Sidebar text will be go here.Sidebar text will be go here.</p>	
-            </div>
-            
-            <div class="popular clear">
-                <h3><a href="#">Post title will be go here..</a></h3>
-                <a href="#"><img src="images/post1.jpg" alt="post image"/></a>
-                <p>Sidebar text will be go here.Sidebar text will be go here.Sidebar text will be go here.Sidebar text will be go here.</p>	
-            </div>
+
+            <?php  } }?>
     </div>
 </div>
