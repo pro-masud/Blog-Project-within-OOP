@@ -1,3 +1,31 @@
+<?php 
+/**
+ * sesstion file include 
+ * */ 
+include"../lib/Sesstion.php";
+ 
+// sesstion start
+Sesstion::checkSesstion();
+?>
+<?php 
+/**
+ * Database connection here
+ * */ 
+include"../config/config.php";
+
+/**
+ * Database connection here
+ * */ 
+include"../lib/Database.php";
+include"../helpers/formats.php";
+
+/**
+ * Database connection and helper Objects and functions
+ * */ 
+$DB = new Database();
+$format = new Format();
+
+?>
 <!DOCTYPE php>
 <php>
 <head>
@@ -41,13 +69,20 @@
 					<h1>Training with live project</h1>
 					<p>www.trainingwithliveproject.com</p>
 				</div>
+                <?php 
+
+                    if(isset($_GET['action']) && $_GET['action'] == "logout"){
+                        Sesstion::destroy();
+                    }
+                
+                ?>
                 <div class="floatright">
                     <div class="floatleft">
                         <img src="img/img-profile.jpg" alt="Profile Pic" /></div>
                     <div class="floatleft marginleft10">
                         <ul class="inline-ul floatleft">
                             <li>Hello Admin</li>
-                            <li><a href="#">Logout</a></li>
+                            <li><a href="?action=logout">Logout</a></li>
                         </ul>
                     </div>
                 </div>

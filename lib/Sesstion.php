@@ -15,15 +15,15 @@
      * sesstion set method
      * */ 
     public static function set($key, $value){
-        $_SESSION["$key"] = $value;
+        $_SESSION[$key] = $value;
     }
 
     /**
      * sesstion get method 
      * */ 
     public static function get($key){
-        if(isset($_SESSION["$key"])){
-            return $_SESSION["$key"];
+        if(isset($_SESSION[$key])){
+            return $_SESSION[$key];
         }else{
             return false;
         }
@@ -34,13 +34,13 @@
      * */ 
     public static function checkSesstion(){
         self::init();
-        if(self::init("login") == false){
+        if(self::get("login") == false){
             self::destroy();
             header("location:login.php");
         }
     }
 
-    /**
+    /** 
      * sesstion destroy
      * */ 
 

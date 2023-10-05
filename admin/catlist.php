@@ -15,46 +15,21 @@ include"inc/sidebar.php";
 				</tr>
 			</thead>
 			<tbody>
+			<?php 
+				$query = "SELECT * FROM blog_category ORDER BY id desc";
+				/**
+				 * all categorys get to database 
+				 * */ 
+				$categorys = $DB -> select($query);
+				if($categorys){
+					while($result = $categorys -> fetch_assoc()){
+			?>
 				<tr class="odd gradeX">
-					<td>01</td>
-					<td>Internet</td>
-					<td><a href="">Edit</a> || <a href="">Delete</a></td>
+					<td><?php echo $result['id']; ?></td>
+					<td><?php echo $result['name']; ?></td>
+					<td><a href="editcat.php?catid=<?php echo $result['id']; ?>">Edit</a> || <a onclick="return confirm('Are Your Sure To Delete')" href="deletecat.php?catid=<?php echo $result['id']; ?>">Delete</a></td>
 				</tr>
-				<tr class="even gradeC">
-					<td>02</td>
-					<td>Explorer </td>
-					<td><a href="">Edit</a> || <a href="">Delete</a></td>
-				</tr>
-				<tr class="odd gradeX">
-					<td>03</td>
-					<td>Internet</td>
-					<td><a href="">Edit</a> || <a href="">Delete</a></td>
-				</tr>
-				<tr class="even gradeC">
-					<td>04</td>
-					<td>Explorer </td>
-					<td><a href="">Edit</a> || <a href="">Delete</a></td>
-				</tr>
-					<tr class="odd gradeX">
-					<td>05</td>
-					<td>Internet</td>
-					<td><a href="">Edit</a> || <a href="">Delete</a></td>
-				</tr>
-				<tr class="even gradeC">
-					<td>06</td>
-					<td>Explorer </td>
-					<td><a href="">Edit</a> || <a href="">Delete</a></td>
-				</tr>
-				<tr class="odd gradeX">
-					<td>07</td>
-					<td>Internet</td>
-					<td><a href="">Edit</a> || <a href="">Delete</a></td>
-				</tr>
-				<tr class="even gradeC">
-					<td>08</td>
-					<td>Explorer </td>
-					<td><a href="">Edit</a> || <a href="">Delete</a></td>
-				</tr>
+			<?php } } ?>
 			</tbody>
 		</table>
 		</div>

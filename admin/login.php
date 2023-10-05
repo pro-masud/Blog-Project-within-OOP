@@ -8,7 +8,7 @@ include"../lib/Sesstion.php";
 Sesstion::init();
 ?>
 <?php 
-/**
+/** 
  * Database connection here
  * */ 
 include"../config/config.php";
@@ -51,6 +51,8 @@ $format = new Format();
 				if($userResult != false){
 					$value = mysqli_fetch_array($userResult);
 					$rows = mysqli_num_rows($userResult);
+					echo $rows;
+					print_r($value);
 					if($rows > 0){
 						Sesstion::set("login", true);
 						Sesstion::set("user_name", $value['user_name']);
@@ -64,7 +66,7 @@ $format = new Format();
 				}
 			}
 		?>
-		<form action="login.php" method="post">
+		<form method="post">
 			<h1>Admin Login</h1>
 			<div>
 				<input type="text" placeholder="Username" required="" name="user_name"/>
