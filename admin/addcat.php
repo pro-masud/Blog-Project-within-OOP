@@ -6,19 +6,33 @@ include"inc/sidebar.php";
     <div class="box round first grid">
         <h2>Add New Category</h2>
         <div class="block copyblock"> 
-            <form>
-            <table class="form">					
-                <tr>
-                    <td>
-                        <input type="text" placeholder="Enter Category Name..." class="medium" />
-                    </td>
-                </tr>
-                <tr> 
-                    <td>
-                        <input type="submit" name="submit" Value="Save" />
-                    </td>
-                </tr>
-            </table>
+            <form action="" method="POST">
+            <?php 
+
+                    if($_SERVER['REQUEST_METHOD'] == "POST"){
+                        $name = $format -> validation($_POST['name']);
+                        $name = mysqli_real_escape_string($DB -> link, $name);
+    
+                        if(empty($name)){
+                            echo "<p class='error'>Field Not Must be Empty !!";
+                        }else{
+                            echo "<p class='success'>Category Add Successfuly";
+                        }
+                    }
+            
+            ?>
+                <table class="form">					
+                    <tr>
+                        <td>
+                            <input name="name" type="text" placeholder="Enter Category Name..." class="medium" />
+                        </td>
+                    </tr>
+                    <tr> 
+                        <td>
+                            <input type="submit" name="submit" Value="Save" />
+                        </td>
+                    </tr>
+                </table>
             </form>
         </div>
     </div>
