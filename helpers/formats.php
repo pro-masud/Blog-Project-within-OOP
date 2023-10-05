@@ -19,6 +19,18 @@ class Format {
         $text = $text . "...";
         return $text;
     }   
+
+
+    /**
+     * login input validation
+     * */ 
+
+     public function validation($inputData){
+        $inputData = trim($inputData);
+        $inputData = htmlspecialchars($inputData);
+        $inputData = stripslashes($inputData);
+        return $inputData;
+     }
 }
 
 ?>

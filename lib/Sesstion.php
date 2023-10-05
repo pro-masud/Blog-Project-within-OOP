@@ -15,15 +15,15 @@
      * sesstion set method
      * */ 
     public static function set($key, $value){
-        $_SESSION['$key'] = $value;
+        $_SESSION["$key"] = $value;
     }
 
     /**
      * sesstion get method 
      * */ 
     public static function get($key){
-        if(isset($_SESSION['$key'])){
-            return $_SESSION['$key'];
+        if(isset($_SESSION["$key"])){
+            return $_SESSION["$key"];
         }else{
             return false;
         }

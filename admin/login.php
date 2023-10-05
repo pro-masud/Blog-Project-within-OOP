@@ -1,3 +1,31 @@
+<?php 
+/**
+ * sesstion file include 
+ * */ 
+include"../lib/Sesstion.php";
+ 
+// sesstion start
+Sesstion::init();
+?>
+<?php 
+/**
+ * Database connection here
+ * */ 
+include"../config/config.php";
+
+/**
+ * Database connection here
+ * */ 
+include"../lib/Database.php";
+include"../helpers/formats.php";
+
+/**
+ * Database connection and helper Objects and functions
+ * */ 
+$DB = new Database();
+$format = new Format();
+
+?>
 <!DOCTYPE html>
 <head>
 <meta charset="utf-8">
@@ -7,10 +35,39 @@
 <body>
 <div class="container">
 	<section id="content">
-		<form action="" method="post">
+		<?php 
+			if($_SERVER['REQUEST_METHOD'] == 'POST'){
+				$userName = $format -> validation($_POST['user_name']);
+				$password =  $format -> validation(md5($_POST['password']));
+
+				// MySQLi validation
+				$userName = mysqli_real_escape_string($DB -> link, $userName);
+				$password = mysqli_real_escape_string($DB -> link, $password);
+
+				$query = "SELECT * FROM users WHERE user_name = '$userName' AND password = '$password'";
+
+				$userResult = $DB -> select($query);
+
+				if($userResult != false){
+					$value = mysqli_fetch_array($userResult);
+					$rows = mysqli_num_rows($userResult);
+					if($rows > 0){
+						Sesstion::set("login", true);
+						Sesstion::set("user_name", $value['user_name']);
+						Sesstion::set("id", $value['id']);
+						header("location:index.php");
+					}else{
+						echo "<p style='color:red; font-size: 20px; text-align:center;'>No Result Fount !!!</p>";
+					}
+				}else{
+					echo "<p style='color:red; font-size: 20px; text-align:center;'>Username and Password Invalide !!!</p>";
+				}
+			}
+		?>
+		<form action="login.php" method="post">
 			<h1>Admin Login</h1>
 			<div>
-				<input type="text" placeholder="Username" required="" name="username"/>
+				<input type="text" placeholder="Username" required="" name="user_name"/>
 			</div>
 			<div>
 				<input type="password" placeholder="Password" required="" name="password"/>

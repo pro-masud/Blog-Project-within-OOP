@@ -6,7 +6,6 @@ include"./inc/header.php";
  * object declaration here
 */	
 ?>
-
 	<div class="contentsection contemplete clear">
 		<div class="maincontent clear">
         <?php 
