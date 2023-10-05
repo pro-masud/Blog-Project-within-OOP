@@ -16,7 +16,14 @@ include"inc/sidebar.php";
                         if(empty($name)){
                             echo "<p class='error'>Field Not Must be Empty !!";
                         }else{
-                            echo "<p class='success'>Category Add Successfuly";
+                            // echo "<p class='success'>Category Add Successfuly";
+                            $query = "INSERT INTO blog_category (name) VALUES ('$name')";
+                            $addNewCat = $DB -> insert($query);
+                            if($addNewCat){
+                                echo "<p class='success'>Category Insert Successfuly";
+                            }else{
+                                echo "<p class='error'>Category Not Insert !!!";
+                            }
                         }
                     }
             
