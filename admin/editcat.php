@@ -1,11 +1,12 @@
 <?php 
 include"inc/header.php";
 include"inc/sidebar.php";
+?>
 
+<?php 
 // get data url
 if(!isset($_GET['catid']) || $_GET['catid'] == null){
-    // echo "<script>window.location('addcat.php')</script>";
-    header("location:addcat.php");
+    header("location: addcat.php");
 }else{
     $id = $_GET['catid'];
 }
@@ -24,15 +25,14 @@ if(!isset($_GET['catid']) || $_GET['catid'] == null){
                     $name = mysqli_real_escape_string($DB -> link, $name);
 
                     if(empty($name)){
-                        echo "<p class='error'>Field Not Must be Empty !!";
+                        echo "<p class='error'>Field Not Must be Empty !!</p>";
                     }else{
-                        // echo "<p class='success'>Category Add Successfuly";
                         $query = "UPDATE blog_category SET name = '$name' WHERE id = '$id'";
                         $addNewCat = $DB -> update($query);
                         if($addNewCat){
-                            echo "<p class='success'>Category Update Successfuly";
+                            echo "<p class='success'>Category Update Successfuly</p>";
                         }else{
-                            echo "<p class='error'>Category Not Update !!!";
+                            echo "<p class='error'>Category Not Update !!!</p>";
                         }
                     }
                 }
