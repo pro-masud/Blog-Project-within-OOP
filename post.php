@@ -5,7 +5,6 @@ include"./inc/header.php";
 <div class="contentsection contemplete clear">
 	<div class="maincontent clear">
 		<?php 
-
 			$id; 
 			if(!isset($_GET['id']) || $_GET['id'] == null){
 				header("location: 404.php");
@@ -20,7 +19,7 @@ include"./inc/header.php";
 		<div class="about">
 			<h2><?php echo $singlePost['title']; ?></h2>
 			<h4><?php echo $format -> getDate($singlePost['date']); ?> By <a href="#"><?php echo $singlePost['author']; ?></a></h4>
-			<img src="images/<?php echo $singlePost['image']; ?>" alt="MyImage"/>
+			<img src="./admin/uploads/<?php echo $singlePost['image']; ?>" alt="MyImage"/>
 			<?php echo $singlePost['body']; ?>
 			<div class="relatedpost clear">
 
@@ -34,7 +33,7 @@ include"./inc/header.php";
 				while($singleRelatedPost = $relatedPost -> fetch_assoc()){
 			
 			?>
-				<a href="post.php?id=<?php echo $singleRelatedPost['id']; ?>"><img src="images/<?php echo $singleRelatedPost['image']; ?>" alt="post image"/></a>
+				<a href="post.php?id=<?php echo $singleRelatedPost['id']; ?>"><img src="./admin/uploads/<?php echo $singleRelatedPost['image']; ?>" alt="post image"/></a>
 				<?php } }else{
 					echo "<p style='color:red; font-size:24px;'>No Related Post!!</p>";
 				} ?>
