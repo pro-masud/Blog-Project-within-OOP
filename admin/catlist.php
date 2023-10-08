@@ -16,7 +16,7 @@ include"inc/sidebar.php";
 			</thead>
 			<tbody>
 			<?php 
-				$query = "SELECT * FROM blog_category ORDER BY id desc";
+				$query = "SELECT * FROM blog_category ORDER BY id DESC";
 				/**
 				 * all categorys get to database 
 				 * */ 
@@ -27,7 +27,7 @@ include"inc/sidebar.php";
 				<tr class="odd gradeX">
 					<td><?php echo $result['id']; ?></td>
 					<td><?php echo $result['name']; ?></td>
-					<td><a href="editcat.php?catid=<?php echo $result['id']; ?>">Edit</a> || <a onclick="return confirm('Are Your Sure To Delete')" href="deletecat.php?catid=<?php echo $result['id']; ?>">Delete</a></td>
+					<td><a href="editcat.php?catid=<?php echo $result['id']; ?>">Edit</a> || <a onclick="return confirm('Are You Sure To Delete')" href="deletecat.php?catid=<?php echo $result['id']; ?>">Delete</a></td>
 				</tr>
 			<?php } } ?>
 			</tbody>

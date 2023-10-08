@@ -8,7 +8,10 @@ include"inc/sidebar.php";
         <div class="block copyblock"> 
             <form action="" method="POST">
             <?php 
-
+                    /**
+                     * set category data to database 
+                     * 
+                    */
                     if($_SERVER['REQUEST_METHOD'] == "POST"){
                         $name = $format -> validation($_POST['name']);
                         $name = mysqli_real_escape_string($DB -> link, $name);
@@ -26,7 +29,6 @@ include"inc/sidebar.php";
                             }
                         }
                     }
-            
             ?>
                 <table class="form">					
                     <tr>
