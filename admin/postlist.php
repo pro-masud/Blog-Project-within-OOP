@@ -27,7 +27,6 @@ include"inc/sidebar.php";
 					if($posts){
 						$i= 1;
 						while($resultPost = $posts -> fetch_assoc()){
-
 					?>
 					<tr class="odd gradeX">
 						<td><?php echo $i++; ?></td>
@@ -37,7 +36,7 @@ include"inc/sidebar.php";
 						<td><?php echo $resultPost['tags']; ?></td>
 						<td><img style="width:35px; height:35px; border-radius:5px; margin-top:7px; display:block;" src="./uploads/<?php echo $resultPost['image']; ?>" alt=""></td>
 						<td><?php echo $resultPost['author']; ?></td>
-						<td><a href="postedit.php?postid=<?php echo $resultPost['id']; ?>">Edit</a> || <a href="postedit.php?postid=<?php echo $resultPost['id']; ?>"">Delete</a></td>
+						<td><a href="postedit.php?postid=<?php echo $resultPost['id']; ?>">Edit</a> || <a onclick="return confirm('Are You Sure To Delete')" href="deletepost.php?postid=<?php echo $resultPost['id']; ?>"">Delete</a></td>
 					</tr>
 					<?php 	} } ?>
 				</tbody>
@@ -49,7 +48,7 @@ include"inc/sidebar.php";
 <script type="text/javascript">
 	$(document).ready(function () {
 		setupLeftMenu();
-		$('.datatable').dataTable();
+		// $('.datatable').dataTable('#example');
 		setSidebarHeight();
 	});
 </script>
