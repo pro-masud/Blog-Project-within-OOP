@@ -12,7 +12,7 @@ include"./inc/slider.php";
 	<div class="maincontent clear">
 		<!-- pagination limit start -->
 		<?php 
-			$post_per_page = 2;
+			$post_per_page = 3;
 			if(isset($_GET['page'])){
 				$page = $_GET['page'];
 			}else{

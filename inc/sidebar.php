@@ -27,7 +27,7 @@
             <div class="popular clear">
                 <h3><a href=""><?php echo $singlePost['title']; ?></a></h3>
                 <a href="post.php?id=<?php echo $singlePost['id']; ?>"><img src="./admin/uploads/<?php echo $singlePost['image']; ?>" alt="MyImage"/></a>
-                <?php echo $format -> textCount($singlePost['body'], 120); ?>
+                <?php echo $format -> textCount($singlePost['body'], 200); ?>
             </div>
 
             <?php  } }?>
