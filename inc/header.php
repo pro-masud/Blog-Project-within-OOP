@@ -58,9 +58,17 @@ $(window).load(function() {
 	<div class="headersection templete clear">
 		<a href="#">
 			<div class="logo">
-				<img src="images/logo.png" alt="Logo"/>
-				<h2>Website Title</h2>
-				<p>Our website description</p>
+				<?php 
+				$query = "SELECT * FROM  title_sloge WHERE id = '1'";
+				$titleSloge = $DB -> select($query);
+		
+				if($titleSloge){
+					while($result = $titleSloge -> fetch_assoc()){
+				?>
+				<img src="admin/uploads/<?php echo $result['image']; ?>" alt="Logo"/>
+				<h2><?php echo $result['title']; ?></h2>
+				<p><?php echo $result['sloge']; ?></p>
+				<?php } } ?>
 			</div>
 		</a>
 		<div class="social clear">
