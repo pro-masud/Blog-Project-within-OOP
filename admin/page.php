@@ -1,9 +1,6 @@
 <?php 
 include"inc/header.php";
 include"inc/sidebar.php";
-
-
-
 // get data url
 if(!isset($_GET['pageid']) || $_GET['pageid'] == null){
     header("location: index.php");
@@ -11,6 +8,23 @@ if(!isset($_GET['pageid']) || $_GET['pageid'] == null){
     $id = $_GET['pageid'];
 }
 ?>
+
+<style>
+    .deletebtn{
+        background-color: #333;
+        color:red;
+        font-weight: normal;
+        padding: 8px 15px;
+        margin-left:10px;
+    }
+    .deletebtn:hover{
+        background-color: #333;
+        color:red;
+        font-weight: normal;
+        padding: 8px 15px;
+        margin-left:10px;
+    }
+</style>
 <div class="grid_10">
     <div class="box round first grid">
         <h2>Edit Page</h2>
@@ -72,6 +86,7 @@ if(!isset($_GET['pageid']) || $_GET['pageid'] == null){
                         <td></td>
                         <td>
                             <input type="submit" name="submit" Value="Update" />
+                           <span> <a onclick="return confirm('Are You Sure To Delete')" class="deletebtn" href="pagedelete.php?pageid=<?php echo $pageResult['id']; ?>">Delete</a></span>
                         </td>
                     </tr>
                 </table>
@@ -90,7 +105,4 @@ if(!isset($_GET['pageid']) || $_GET['pageid'] == null){
         $('input[type="radio"]').fancybutton();
     });
 </script>
-<?php include"inc/footer.php";?>
-
-
-  
+<?php include"inc/footer.php";?>  
