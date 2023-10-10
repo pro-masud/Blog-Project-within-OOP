@@ -23,10 +23,9 @@
                             if($result){
 
                                 while($pageResult = $result -> fetch_assoc()){
-                        
                         ?>
                         <li><a href="page.php?pageid=<?php echo $pageResult['id']; ?>"><?php echo $pageResult['name']; ?></a></li>
-                        <?php }} ?>
+                        <?php } } ?>
                     </ul>
                 </li>
                 <li><a class="menuitem">Category Option</a>
