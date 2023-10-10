@@ -7,7 +7,15 @@
 			<li><a href="#">Privacy</a></li>
 		</ul>
 	  </div>
-	  <p>&copy; Copyright Training with live project.</p>
+	  <?php 
+			$query = "SELECT * FROM  blog_footer_text WHERE id = '1'";
+			$footertext = $DB -> select($query);
+
+			if($footertext){
+				while($result = $footertext -> fetch_assoc()){
+		?>
+	  <p>&copy; <?php echo $result['nodetext']; ?></p>
+	  <?php } } ?>
 	</div>
 	<?php 
 		/**
