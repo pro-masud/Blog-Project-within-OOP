@@ -72,12 +72,23 @@ $(window).load(function() {
 			</div>
 		</a>
 		<div class="social clear">
+			<?php 
+				/**
+				 * get all social data to database
+				 * */ 
+				$query = "SELECT * FROM  blog_social WHERE id = '1'";
+				$social = $DB -> select($query);
+		
+				if($social){
+					while($singleSocial = $social -> fetch_assoc()){
+			?> 
 			<div class="icon clear">
-				<a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
-				<a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
-				<a href="#" target="_blank"><i class="fa fa-linkedin"></i></a>
-				<a href="#" target="_blank"><i class="fa fa-google-plus"></i></a>
+				<a href="<?php echo $singleSocial['fb']; ?>" target="_blank"><i class="fa fa-facebook"></i></a>
+				<a href="<?php echo $singleSocial['tw']; ?>" target="_blank"><i class="fa fa-twitter"></i></a>
+				<a href="<?php echo $singleSocial['lin']; ?>" target="_blank"><i class="fa fa-linkedin"></i></a>
+				<a href="<?php echo $singleSocial['gg']; ?>" target="_blank"><i class="fa fa-google-plus"></i></a>
 			</div>
+			<?php } } ?>
 			<div class="searchbtn clear">
 			<form action="search.php" method="GET">
 				<input type="text" name="search" placeholder="Search keyword..."/>

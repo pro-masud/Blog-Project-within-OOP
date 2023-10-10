@@ -9,12 +9,23 @@
 	  </div>
 	  <p>&copy; Copyright Training with live project.</p>
 	</div>
+	<?php 
+		/**
+		 * get all social data to database
+		 * */ 
+		$query = "SELECT * FROM  blog_social WHERE id = '1'";
+		$social = $DB -> select($query);
+
+		if($social){
+			while($singleSocial = $social -> fetch_assoc()){
+	?> 
 	<div class="fixedicon clear">
-		<a href="http://www.facebook.com"><img src="images/fb.png" alt="Facebook"/></a>
-		<a href="http://www.twitter.com"><img src="images/tw.png" alt="Twitter"/></a>
-		<a href="http://www.linkedin.com"><img src="images/in.png" alt="LinkedIn"/></a>
-		<a href="http://www.google.com"><img src="images/gl.png" alt="GooglePlus"/></a>
+		<a href="<?php echo $singleSocial['fb']; ?>"><img src="images/fb.png" alt="Facebook"/></a>
+		<a href="<?php echo $singleSocial['tw']; ?>"><img src="images/tw.png" alt="Twitter"/></a>
+		<a href="<?php echo $singleSocial['lin']; ?>"><img src="images/in.png" alt="LinkedIn"/></a>
+		<a href="<?php echo $singleSocial['gg']; ?>"><img src="images/gl.png" alt="GooglePlus"/></a>
 	</div>
+	<?php } } ?>
 <script type="text/javascript" src="js/scrolltop.js"></script>
 </body>
 </html>
