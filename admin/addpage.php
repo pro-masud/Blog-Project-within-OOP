@@ -4,7 +4,7 @@ include"inc/sidebar.php";
 ?>
 <div class="grid_10">
     <div class="box round first grid">
-        <h2>Add New Post</h2>
+        <h2>Add New Page</h2>
         <?php 
             /**
              * pages set to database 

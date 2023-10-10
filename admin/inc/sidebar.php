@@ -22,10 +22,11 @@
 
                             if($result){
 
-                                while($catResult = $result -> fetch_assoc()){
+                                while($pageResult = $result -> fetch_assoc()){
                         
                         ?>
-                        <li><a>Contact Us</a></li>
+                        <li><a href="page.php?pageid=<?php echo $pageResult['id']; ?>"><?php echo $pageResult['name']; ?></a></li>
+                        <?php }} ?>
                     </ul>
                 </li>
                 <li><a class="menuitem">Category Option</a>
