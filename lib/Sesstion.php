@@ -40,6 +40,17 @@
         }
     }
 
+
+    /**
+     * sesstion checked 
+     * */ 
+    public static function checkLogin(){
+        self::init();
+        if(self::get("login") == true){
+            header("location:index.php");
+        }
+    }
+
     /** 
      * sesstion destroy
      * */ 

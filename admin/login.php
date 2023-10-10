@@ -5,7 +5,7 @@
 include"../lib/Sesstion.php";
  
 // sesstion start
-Sesstion::init();
+Sesstion::checkLogin();
 ?>
 <?php 
 /** 
