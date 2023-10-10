@@ -10,10 +10,21 @@
                         
                     </ul>
                 </li>
-                
-                    <li><a class="menuitem">Update Pages</a>
+                    <li><a class="menuitem">Pages</a>
                     <ul class="submenu">
-                        <li><a>About Us</a></li>
+                        <li><a href="addpage.php">Create Page</a></li>
+                        <?php 
+                        /**
+                         * get all pages to database
+                         * */ 
+                            $query = "SELECT * FROM blog_page";
+                            $result = $DB -> select($query);
+
+                            if($result){
+
+                                while($catResult = $result -> fetch_assoc()){
+                        
+                        ?>
                         <li><a>Contact Us</a></li>
                     </ul>
                 </li>
