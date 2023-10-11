@@ -131,8 +131,15 @@ $(window).load(function() {
 		</div>
 	</div>
 <div class="navsection templete">
+	<?php 
+		/**
+		 * cureent page location
+		*/
+		$path = $_SERVER['SCRIPT_FILENAME'];
+		$cureentPage = basename($path, ".php");
+	?>
 	<ul>
-		<li><a id="active" href="index.php">Home</a></li>
+		<li><a <?php if($cureentPage == 'index'){ echo "id='active'"; }?> href="index.php">Home</a></li>
 		<?php 
 			/**
 			 * get all pages to database
@@ -143,8 +150,19 @@ $(window).load(function() {
 			if($result){
 				while($pageResult = $result -> fetch_assoc()){
 		?>
-			<li><a href="page.php?pageid=<?php echo $pageResult['id']; ?>"><?php echo $pageResult['name']; ?></a></li>
+			<li><a
+			<?php 
+			if(isset($_GET['pageid'])){
+				$pageid = $_GET['pageid'];
+				if($pageid == $pageResult['id']){
+					?>
+					id="active"
+					<?php 
+				}
+			}
+			?>			
+			href="page.php?pageid=<?php echo $pageResult['id']; ?>"><?php echo $pageResult['name']; ?></a></li>
 		<?php } } ?>
-		<li><a href="contact.php">Contact</a></li>
+		<li><a <?php if($cureentPage == 'contact'){ echo "id='active'"; }?>  href="contact.php">Contact</a></li>
 	</ul>
 </div>

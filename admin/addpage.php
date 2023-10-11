@@ -13,7 +13,6 @@ include"inc/sidebar.php";
             if($_SERVER['REQUEST_METHOD'] == "POST"){
                 $name = mysqli_real_escape_string($DB -> link, $_POST['name']);
                 $body = mysqli_real_escape_string($DB -> link, $_POST['body']);
-                echo $body;
 
                 if($name == "" || $body == "" ){
                         echo "<p class='error'>Field Mush Not be Empty !!</p>";
