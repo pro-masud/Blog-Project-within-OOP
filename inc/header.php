@@ -100,7 +100,18 @@ $(window).load(function() {
 <div class="navsection templete">
 	<ul>
 		<li><a id="active" href="index.php">Home</a></li>
-		<li><a href="about.php">About</a></li>	
+		<?php 
+			/**
+			 * get all pages to database
+			 * */ 
+			$query = "SELECT * FROM blog_page";
+			$result = $DB -> select($query);
+
+			if($result){
+				while($pageResult = $result -> fetch_assoc()){
+		?>
+			<li><a href="page.php?pageid=<?php echo $pageResult['id']; ?>"><?php echo $pageResult['name']; ?></a></li>
+		<?php } } ?>
 		<li><a href="contact.php">Contact</a></li>
 	</ul>
 </div>
