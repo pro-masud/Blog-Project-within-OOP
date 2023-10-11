@@ -10,51 +10,33 @@ include"inc/sidebar.php";
             <thead>
                 <tr>
                     <th>Serial No.</th>
+                    <th>Name</th>
+                    <th>Email</th>
                     <th>Message</th>
+                    <th>Date</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                <tr class="odd gradeX">
-                    <td>01</td>
-                    <td>Internet</td>
-                    <td><a href="">Edit</a> || <a href="">Delete</a></td>
+                <?php 
+                    $query = "SELECT * FROM  blog_contact ORDER BY id DESC";
+                    /**
+                     * all user data get to database 
+                     * */ 
+                    $users = $DB -> select($query);
+                    if($users){
+                        $i = 1;
+                        while($singleUser = $users -> fetch_assoc()){
+                ?>
+                <tr class="odd gradeX gradeC">
+                    <td><?php echo  $i++; ?></td>
+                    <td><?php echo $singleUser['firstname'] . " " . $singleUser['lastname']; ?></td>
+                    <td><?php echo $singleUser['email']; ?></td>
+                    <td><?php echo $format -> textCount($singleUser['body'], 25); ?></td>
+                    <td><?php echo  $format -> getDate($singleUser['date']); ?></td>
+                    <td><a style="color:green;" href="editmes.php?mesid=<?php echo $singleUser['id']; ?>">Edit</a> || <a style="color:red;" href="delmes.php?mesid=<?php echo $singleUser['id']; ?>">Delete</a></td>
                 </tr>
-                <tr class="even gradeC">
-                    <td>02</td>
-                    <td>Explorer </td>
-                    <td><a href="">Edit</a> || <a href="">Delete</a></td>
-                </tr>
-                <tr class="odd gradeX">
-                    <td>03</td>
-                    <td>Internet</td>
-                    <td><a href="">Edit</a> || <a href="">Delete</a></td>
-                </tr>
-                <tr class="even gradeC">
-                    <td>04</td>
-                    <td>Explorer </td>
-                    <td><a href="">Edit</a> || <a href="">Delete</a></td>
-                </tr>
-                    <tr class="odd gradeX">
-                    <td>05</td>
-                    <td>Internet</td>
-                    <td><a href="">Edit</a> || <a href="">Delete</a></td>
-                </tr>
-                <tr class="even gradeC">
-                    <td>06</td>
-                    <td>Explorer </td>
-                    <td><a href="">Edit</a> || <a href="">Delete</a></td>
-                </tr>
-                <tr class="odd gradeX">
-                    <td>07</td>
-                    <td>Internet</td>
-                    <td><a href="">Edit</a> || <a href="">Delete</a></td>
-                </tr>
-                <tr class="even gradeC">
-                    <td>08</td>
-                    <td>Explorer </td>
-                    <td><a href="">Edit</a> || <a href="">Delete</a></td>
-                </tr>
+                <?php } } ?>
             </tbody>
         </table>
         </div>

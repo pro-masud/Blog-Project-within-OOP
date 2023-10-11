@@ -24,12 +24,18 @@ include"./inc/header.php";
 						$error = "Last Must Name Not be Empty !";
 					}else if(empty($email)){
 						$error = "Email Must Not be Empty !";
-					}else if(!filter_var($value, FILTER_VALIDATE_EMAIL)){
+					}else if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
 						$error = "Email Is Invalied !";
 					}else if(empty($body)){
 						$error = "Body Must Not be Empty !";
 					}else{
-						$success = "<p class='success'>Send Data Successfully</p>";
+						$query = "INSERT INTO blog_contact (firstname, lastname, email, body) VALUES ('$firstname', '$lastname', '$email', '$body')";
+                        $inserted_rows = $DB->update($query);
+                        if ($inserted_rows) {
+                            echo "<span style='font-size:30px;' class='success'>Message Send Successfully.</span>";
+                        }else {
+                            echo "<span class='error'>Message Not Send !</span>";
+                        }
 					}
 				}
 			?>

@@ -28,7 +28,7 @@ include"inc/sidebar.php";
 						$i= 1;
 						while($resultPost = $posts -> fetch_assoc()){
 					?>
-					<tr class="odd gradeX">
+					<tr class="odd gradeX gradeC">
 						<td><?php echo $i++; ?></td>
 						<td><?php echo$format -> textCount($resultPost['title'], 20); ?></td>
 						<td><?php echo $format -> textCount($resultPost['body'], 50); ?></td>
@@ -48,7 +48,7 @@ include"inc/sidebar.php";
 <script type="text/javascript">
 	$(document).ready(function () {
 		setupLeftMenu();
-		// $('.datatable').dataTable('#example');
+		$('.datatable').dataTable();
 		setSidebarHeight();
 	});
 </script>
