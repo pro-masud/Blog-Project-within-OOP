@@ -31,6 +31,21 @@ class Format {
         $inputData = stripslashes($inputData);
         return $inputData;
      }
+
+    /**
+     * url path title dynamic 
+     * */  
+    public function title(){
+        $path = $_SERVER['SCRIPT_FILENAME'];
+        $title = basename($path, ".php");
+
+        if($title == "index"){
+            $title = "home";
+        }elseif($title == "contact"){
+            $title = "contact";
+        }
+        return $title = ucwords($title);
+    }
 }
 
 ?>

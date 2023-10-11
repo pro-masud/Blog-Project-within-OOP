@@ -20,7 +20,40 @@ $format = new Format();
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Basic Website</title>
+
+<?php
+	if(isset($_GET['pageid'])){
+		$pageid = $_GET['pageid'];
+		/**
+		 * get all pages to database
+		 * */ 
+		$query = "SELECT * FROM blog_page WHERE id = '$pageid'";
+		$pages = $DB -> select($query);
+
+		if($pages){
+			while($singlePage = $pages -> fetch_assoc()){
+			?>
+			<title><?php echo $singlePage['name'] ." - ". TITLE; ?></title>
+		<?php } } }elseif(isset($_GET['id'])){
+			$postid = $_GET['id'];
+			/**
+			 * get all pages to database
+			 * */ 
+			$query = "SELECT * FROM blog_post WHERE id = '$postid'";
+			$posts = $DB -> select($query);
+	
+			if($posts){
+				while($singlepost = $posts -> fetch_assoc()){
+				?>
+				<title><?php echo $singlepost['title'] ." - ". TITLE; ?></title>
+			<?php } }
+		}else{ ?>
+			<title><?php echo $format -> title()."-". TITLE; ?></title>
+		<?php 
+		}
+?>
+
+	<title><?php echo TITLE; ?></title>
 	<meta name="language" content="English">
 	<meta name="description" content="It is a website about education">
 	<meta name="keywords" content="blog,cms blog">
