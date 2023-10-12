@@ -5,18 +5,51 @@ include"inc/sidebar.php";
 <div class="grid_10">
     <div class="box round first grid">
         <h2>Inbox</h2>
-
         <?php 
-            if(isset($_GET['seenid'])){
-                $seenid = $_GET['seenid'];
+            /**
+             *seen message admin or admin acess users 
+            */ 
+                if(isset($_GET['seenid'])){
+                    $seenid = $_GET['seenid'];
 
-                $query = "UPDATE blog_contact SET status = '1' WHERE id = '$seenid'";
+                    $query = "UPDATE blog_contact SET status = '1' WHERE id = '$seenid'";
+                    $seenMessage = $DB -> update($query);
+                    if($seenMessage){
+                        echo "<p class='success'>Message Seen Successfuly</p>";
+                    }else{
+                        echo "<p class='error'>Message Not Seen !!!</p>";
+                    }
+                }
+
+            /**
+             *seen message admin or admin acess users 
+            */ 
+            if(isset($_GET['unseen'])){
+                $seenid = $_GET['unseen'];
+
+                $query = "UPDATE blog_contact SET status = '0' WHERE id = '$seenid'";
                 $seenMessage = $DB -> update($query);
                 if($seenMessage){
-                    echo "<p class='success'>Message Seen Successfuly</p>";
+                    echo "<p class='success'>Message Unseen Successfuly</p>";
                 }else{
-                    echo "<p class='error'>Message Not Seen !!!</p>";
+                    echo "<p class='error'>Message Not Unseen !!!</p>";
                 }
+            }
+
+            /**
+             * delete message to database
+             * */ 
+
+             if(isset($_GET['delid'])){
+                $delId = $_GET['delid'];
+                $query = "DELETE FROM blog_contact WHERE id = '$delId' ";
+                $delData = $DB -> delete($query);
+                if($delData){
+                    echo "<p class='success'>Message Delete Successfuly</p>";
+                }else{
+                    echo "<p class='error'>Message Not Delete !!!</p>";
+                }
+
             }
         ?>
         <div class="block">        
@@ -86,7 +119,7 @@ include"inc/sidebar.php";
                         <td><?php echo $singleUser['email']; ?></td>
                         <td><?php echo $format -> textCount($singleUser['body'], 25); ?></td>
                         <td><?php echo  $format -> getDate($singleUser['date']); ?></td>
-                        <td><a style="color:green;" href="?delid=<?php echo $singleUser['id']; ?>">Delete</a></td>
+                        <td><a style="color:green;" href="viewmes.php?mesid=<?php echo $singleUser['id']; ?>">View</a> || <a style="color:green;" href="?unseen=<?php echo $singleUser['id']; ?>">Unseen</a> || <a style="color:red;" href="?delid=<?php echo $singleUser['id']; ?>">Delete</a></td>
                     </tr>
                     <?php } } ?>
                 </tbody>

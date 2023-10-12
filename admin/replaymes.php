@@ -71,7 +71,7 @@ if(!isset($_GET['replyid']) || $_GET['replyid'] == null){
                     </tr>
                     <tr>
                         <td>
-                            <input name="sumbit" type="submit" value="Back">
+                            <input name="sumbit" type="submit" value="Submit">
                             <a style="background-color: #333; color:#fff; padding: 8px; margin-top: 10px;" href="inbox.php">Back</a>
                         </td>
                     </tr>
