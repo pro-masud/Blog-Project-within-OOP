@@ -4,10 +4,10 @@ include"inc/sidebar.php";
 
 
 // get data url
-if(!isset($_GET['mesid']) || $_GET['mesid'] == null){
+if(!isset($_GET['replyid']) || $_GET['replyid'] == null){
     header("location: inbox.php");
 }else{
-    $id = $_GET['mesid'];
+    $id = $_GET['replyid'];
 }
 ?>
 <div class="grid_10">
@@ -15,10 +15,10 @@ if(!isset($_GET['mesid']) || $_GET['mesid'] == null){
         <h2>Message Single Page View</h2>
         <?php 
             if($_SERVER['REQUEST_METHOD']){
-                $toMail = mysqli_real_escape_string($DB -> link, $_POST['toMail']);
-                $fromEmail = mysqli_real_escape_string($DB -> link, $_POST['fromEmail']);
-                $subject = mysqli_real_escape_string($DB -> link, $_POST['subject']);
-                $message = mysqli_real_escape_string($DB -> link, $_POST['message']);
+                $toMail =  $_POST['toMail']?? " ";
+                $fromEmail = $_POST['fromEmail'] ?? " ";
+                $subject = $_POST['subject'] ?? " ";
+                $message = $_POST['message'] ?? " ";
 
                 $sentMess = mail($toMail, $subject, $message, $fromEmail);
                 if($sentMess){
@@ -71,6 +71,7 @@ if(!isset($_GET['mesid']) || $_GET['mesid'] == null){
                     </tr>
                     <tr>
                         <td>
+                            <input name="sumbit" type="submit" value="Back">
                             <a style="background-color: #333; color:#fff; padding: 8px; margin-top: 10px;" href="inbox.php">Back</a>
                         </td>
                     </tr>
