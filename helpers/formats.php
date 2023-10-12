@@ -6,7 +6,7 @@
 
 class Format {
     public function getDate($date){
-        return date("m, d, F h:i:s", strtotime($date));
+        return date("M, d, F h:i:s", strtotime($date));
     }
 
     /**
