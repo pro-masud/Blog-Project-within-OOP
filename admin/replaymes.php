@@ -13,6 +13,21 @@ if(!isset($_GET['mesid']) || $_GET['mesid'] == null){
 <div class="grid_10">
     <div class="box round first grid">
         <h2>Message Single Page View</h2>
+        <?php 
+            if($_SERVER['REQUEST_METHOD']){
+                $toMail = mysqli_real_escape_string($DB -> link, $_POST['toMail']);
+                $fromEmail = mysqli_real_escape_string($DB -> link, $_POST['fromEmail']);
+                $subject = mysqli_real_escape_string($DB -> link, $_POST['subject']);
+                $message = mysqli_real_escape_string($DB -> link, $_POST['message']);
+
+                $sentMess = mail($toMail, $subject, $message, $fromEmail);
+                if($sentMess){
+                    echo "<span style='font-size:30px;' class='success'>Message Send Successfully.</span>";
+                }else{
+                    echo "<span class='error'>Message Not Send !</span>";
+                }
+            }
+        ?>
         <div class="block">    
             <?php 
                 $query = "SELECT * FROM blog_contact WHERE id = '$id'";
@@ -21,43 +36,40 @@ if(!isset($_GET['mesid']) || $_GET['mesid'] == null){
                     while($singleView = $viewMes -> fetch_assoc()){
             ?>           
             <form action="" method="POST">
-                <table class="form">
+                <table class="form"> 
                     <tr>
                         <td>
-                            <label>Name</label>
+                            <label>To</label>
                         </td>
                         <td>
-                            <input value="<?php echo $singleView['firstname'] . ' ' . $singleView['lastname']; ?>" type="text" readonly class="medium" />
-                        </td>
-                    </tr>  
-                    <tr>
-                        <td>
-                            <label>Email</label>
-                        </td>
-                        <td>
-                            <input value="<?php echo $singleView['email']; ?>" type="text" readonly class="medium" />
+                            <input name="toMail" value="<?php echo $singleView['email']; ?>" type="text" readonly class="medium" />
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <label>Date</label>
+                            <label>From</label>
                         </td>
                         <td>
-                            <input  value="<?php echo $singleView['date']; ?>" type="text" readonly class="medium" />
+                            <input name="fromEmail" type="text" class="medium" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Subject</label>
+                        </td>
+                        <td>
+                            <input name="subject" type="text" class="medium" />
                         </td>
                     </tr>
                     <tr>
                         <td style="vertical-align: top; padding-top: 9px;">
-                            <label>Body</label>
+                            <label>Message</label>
                         </td>
                         <td>
-                            <textarea readonly class="tinymce">
-                                <?php echo $singleView['body']; ?>
-                            </textarea>
+                            <textarea name="message" readonly class="tinymce"></textarea>
                         </td>
                     </tr>
                     <tr>
-                        <td></td>
                         <td>
                             <a style="background-color: #333; color:#fff; padding: 8px; margin-top: 10px;" href="inbox.php">Back</a>
                         </td>
