@@ -56,7 +56,22 @@ $format = new Format();
 	<title><?php echo TITLE; ?></title>
 	<meta name="language" content="English">
 	<meta name="description" content="It is a website about education">
-	<meta name="keywords" content="blog,cms blog">
+	<?php
+	if(isset($_GET['id'])){
+			$keyid = $_GET['id'];
+			/**
+			 * get all pages to database
+			 * */ 
+			$query = "SELECT * FROM blog_post WHERE id = '$keyid '";
+			$keywords = $DB -> select($query);
+	
+			if($keywords){
+				while($singlepost = $keywords -> fetch_assoc()){
+	?>
+	<meta name="keywords" content="<?php echo $singlepost['tags']; ?>">
+	<?php } } } else { ?>
+	<meta name="keywords" content="php, leravel, wordpress, c, c++, C# programming">
+	<?php } ?>
 	<meta name="author" content="Delowar">
 	<link rel="stylesheet" href="font-awesome-4.5.0/css/font-awesome.css">	
 	<link rel="stylesheet" href="css/nivo-slider.css" type="text/css" media="screen" />

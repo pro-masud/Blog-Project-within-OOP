@@ -21,36 +21,7 @@ include"inc/sidebar.php";
                     }
                 }
 
-            /**
-             *seen message admin or admin acess users 
-            */ 
-            if(isset($_GET['unseen'])){
-                $seenid = $_GET['unseen'];
-
-                $query = "UPDATE blog_contact SET status = '0' WHERE id = '$seenid'";
-                $seenMessage = $DB -> update($query);
-                if($seenMessage){
-                    echo "<p class='success'>Message Unseen Successfuly</p>";
-                }else{
-                    echo "<p class='error'>Message Not Unseen !!!</p>";
-                }
-            }
-
-            /**
-             * delete message to database
-             * */ 
-
-             if(isset($_GET['delid'])){
-                $delId = $_GET['delid'];
-                $query = "DELETE FROM blog_contact WHERE id = '$delId' ";
-                $delData = $DB -> delete($query);
-                if($delData){
-                    echo "<p class='success'>Message Delete Successfuly</p>";
-                }else{
-                    echo "<p class='error'>Message Not Delete !!!</p>";
-                }
-
-            }
+          
         ?>
         <div class="block">        
             <table class="data display datatable" id="example">
@@ -90,6 +61,40 @@ include"inc/sidebar.php";
     </div>
     <div class="box round first grid">
         <h2>Seen Message</h2>
+        <?php 
+        
+          /**
+             *seen message admin or admin acess users 
+            */ 
+            if(isset($_GET['unseen'])){
+                $seenid = $_GET['unseen'];
+
+                $query = "UPDATE blog_contact SET status = '0' WHERE id = '$seenid'";
+                $seenMessage = $DB -> update($query);
+                if($seenMessage){
+                    echo "<p class='success'>Message Unseen Successfuly</p>";
+                }else{
+                    echo "<p class='error'>Message Not Unseen !!!</p>";
+                }
+            }
+
+            /**
+             * delete message to database
+             * */ 
+
+             if(isset($_GET['delid'])){
+                $delId = $_GET['delid'];
+                $query = "DELETE FROM blog_contact WHERE id = '$delId' ";
+                $delData = $DB -> delete($query);
+                if($delData){
+                    echo "<p class='success'>Message Delete Successfuly</p>";
+                }else{
+                    echo "<p class='error'>Message Not Delete !!!</p>";
+                }
+
+            }
+        
+        ?>
         <div class="block">        
             <table class="data display datatable" id="example">
                 <thead>
