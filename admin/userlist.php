@@ -5,6 +5,18 @@ include"inc/sidebar.php";
 <div class="grid_10">
 	<div class="box round first grid">
 		<h2>Post List</h2>
+		<?php 
+			if(isset($_GET['userid'])){
+				$userid = $_GET['userid'];
+				$query = "DELETE FROM users WHERE id ='$userid'";
+				$deleteUser = $DB -> delete($query);
+				if ($deleteUser) {
+					echo "<span class='success'>User Delete Successfully.</span>";
+				}else {
+						echo "<span class='error'>User Not Delete !</span>";
+				}
+			}
+		?>
 		<div class="block">  
 			<table class="data display datatable" id="example">
 				<thead>
@@ -47,7 +59,7 @@ include"inc/sidebar.php";
                                 echo "Editor";
                             }
                         ?></td>
-						<td ><a href="userview.php?userid=<?php echo $user['id']; ?>">View</a> || <a onclick="return confirm('Are You Sure To Delete')" href="?userid=<?php echo $user['id']; ?>">Delete</a></td>
+						<td ><a href="usersingleview.php?userid=<?php echo $user['id']; ?>">View</a> || <a onclick="return confirm('Are You Sure To Delete')" href="?userid=<?php echo $user['id']; ?>">Delete</a></td>
 					</tr>
 					<?php 	} } ?>
 				</tbody>
