@@ -56,7 +56,8 @@ $format = new Format();
 					if($rows > 0){
 						Sesstion::set("login", true);
 						Sesstion::set("user_name", $value['user_name']);
-						Sesstion::set("id", $value['id']);
+						Sesstion::set("userId", $value['id']);
+						Sesstion::set("userRole", $value['role']);
 						header("location:index.php");
 					}else{
 						echo "<p style='color:red; font-size: 20px; text-align:center;'>No Result Fount !!!</p>";

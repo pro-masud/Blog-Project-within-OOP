@@ -14,7 +14,7 @@ include"inc/sidebar.php";
                     */
                     if($_SERVER['REQUEST_METHOD'] == "POST"){
                         $username = $format -> validation($_POST['username']);
-                        $password = $format -> validation($_POST['password']);
+                        $password = $format -> validation(md5($_POST['password']));
                         $role = $format -> validation($_POST['role']);
 
                         $username = mysqli_real_escape_string($DB -> link, $username);
@@ -28,9 +28,9 @@ include"inc/sidebar.php";
                             $query = "INSERT INTO users (user_name, password, role) VALUES ('$username', '$password', '$role')";
                             $addNewCat = $DB -> insert($query);
                             if($addNewCat){
-                                echo "<p class='success'>Category Insert Successfuly";
+                                echo "<p class='success'>Create User Successfuly";
                             }else{
-                                echo "<p class='error'>Category Not Insert !!!";
+                                echo "<p class='error'>User Not Create !!!";
                             }
                         }
                     }
