@@ -14,6 +14,7 @@ include"inc/sidebar.php";
 						<th>User Name</th>
 						<th>Email</th>
 						<th>Details</th>
+						<th>Role</th>
 						<th>Action</th>
 					</tr>
 				</thead>
@@ -37,6 +38,15 @@ include"inc/sidebar.php";
 						<td ><?php echo $user['user_name']; ?></td>
 						<td ><?php echo $user['email']; ?></td>
 						<td ><?php echo $format -> textCount($user['details'], 20); ?></td>
+                        <td><?php 
+                            if($user['role'] == 1){
+                                echo "Admin";
+                            }else if( $user['role'] == 2){
+                                echo "Author";
+                            }else if($user['role'] == 3){
+                                echo "Editor";
+                            }
+                        ?></td>
 						<td ><a href="userview.php?userid=<?php echo $user['id']; ?>">View</a> || <a onclick="return confirm('Are You Sure To Delete')" href="?userid=<?php echo $user['id']; ?>">Delete</a></td>
 					</tr>
 					<?php 	} } ?>
