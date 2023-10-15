@@ -32,7 +32,7 @@ echo $userRole = Sesstion::get('userRole');
         <div class="block">
             <?php 
                 /**
-                 * get all post to database
+                 * get all user to database
                  * 
                  * */
                 $query = "SELECT * FROM users WHERE id = '$userId' AND role ='$userRole'";
