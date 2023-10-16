@@ -31,7 +31,7 @@ include"inc/sidebar.php";
 						<td>
 							<?php if(Sesstion::get('userRole') == '1'){	 ?>
 							<a href="slideredit.php?sliderid=<?php echo $slider['id']; ?>">Edit</a> || 
-							<a onclick="return confirm('Are You Sure To Delete')" href="?sliderid=<?php echo $slider['id']; ?>"">Delete</a></td>
+							<a onclick="return confirm('Are You Sure To Delete')" href="deleteslider.php?sliderid=<?php echo $slider['id']; ?>"">Delete</a></td>
 							<?php } ?>
 					</tr>
 					<?php 	} } ?>
