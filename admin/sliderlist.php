@@ -4,48 +4,34 @@ include"inc/sidebar.php";
 ?>
 <div class="grid_10">
 	<div class="box round first grid">
-		<h2>Post List</h2>
+		<h2>Slider List</h2>
 		<div class="block">  
 			<table class="data display datatable" id="example">
 				<thead>
 					<tr>
 						<th>No.</th>
-						<th>Post Title</th>
-						<th>Description</th>
-						<th>Category</th>
-						<th>Tags</th>
-						<th>Image</th>
-						<th>Author</th>
+						<th>Slider Title</th>
+						<th>Slider Image</th>
 						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
 					<?php  
-					$query = "SELECT  blog_post.*, blog_category.name FROM blog_post INNER JOIN blog_category ON blog_post.cat = blog_category.id ORDER BY blog_post.title DESC";
+					$query = "SELECT  * FROM blog_slider";
 					
-					$posts = $DB -> select($query);
-					if($posts){
+					$sliders = $DB -> select($query);
+					if($sliders){
 						$i= 1;
-						while($resultPost = $posts -> fetch_assoc()){
+						while($slider = $sliders -> fetch_assoc()){
 					?>
 					<tr class="odd gradeX gradeC">
 						<td><?php echo $i++; ?></td>
-						<td><?php echo$format -> textCount($resultPost['title'], 20); ?></td>
-						<td><?php echo $format -> textCount($resultPost['body'], 50); ?></td>
-						<td class="center"><?php echo $resultPost['name']; ?></td>
-						<td><?php echo $resultPost['tags']; ?></td>
-						<td><img style="width:35px; height:35px; border-radius:5px; margin-top:7px; display:block;" src="./uploads/<?php echo $resultPost['image']; ?>" alt=""></td>
-						<td><?php echo $resultPost['author']; ?></td>
+						<td><?php echo$format -> textCount($slider['title'], 20); ?></td>
+						<td><img style="width:35px; height:35px; border-radius:5px; margin-top:7px; display:block;" src="./uploads/slider/<?php echo $slider['image']; ?>" alt=""></td>
 						<td>
-							<a href="postview.php?postid=<?php echo $resultPost['id']; ?>">View</a> 
-							<?php
-							
-							if(Sesstion::get('userId') == $resultPost['userid'] || Sesstion::get('userRole') == '1'){
-								
-							?>
-							||
-							<a href="postedit.php?postid=<?php echo $resultPost['id']; ?>">Edit</a> || 
-							<a onclick="return confirm('Are You Sure To Delete')" href="deletepost.php?postid=<?php echo $resultPost['id']; ?>"">Delete</a></td>
+							<?php if(Sesstion::get('userRole') == '1'){	 ?>
+							<a href="slideredit.php?sliderid=<?php echo $slider['id']; ?>">Edit</a> || 
+							<a onclick="return confirm('Are You Sure To Delete')" href="?sliderid=<?php echo $slider['id']; ?>"">Delete</a></td>
 							<?php } ?>
 					</tr>
 					<?php 	} } ?>
