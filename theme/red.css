@@ -1,0 +1,72 @@
+/* green color */
+.headersection {
+    background: red none repeat scroll 0 0;
+    color: #fff;
+}
+
+.icon a {
+  background: red none repeat scroll 0 0;
+}
+
+.searchbtn input[type="text"] {
+  border: 1px solid red;
+  width: 200px;
+  background: red;
+  font-size: 16px;
+  height: 20px;
+}
+
+.searchbtn input[type="submit"] {
+  border: 1px solid red;
+}
+
+.searchbtn input[type="submit"]:hover {
+  border: 1px solid red;
+}
+
+input[type="submit"]{
+    background: red none repeat scroll 0 0;
+    color: #fff;
+}
+
+.searchbtn input[type="submit"]:hover{
+    background: red none repeat scroll 0 0;
+    color: #fff;
+}
+
+.navsection {
+  background: none repeat scroll 0 0 red;
+}
+
+.navsection ul li {
+  border-left: 1px solid red;
+  border-right: 1px solid red;
+}
+
+.samesidebar h2 {
+  background: red none repeat scroll 0 0;
+  border-bottom: 2px solid red;
+  color: #fff;
+}
+
+.samepost h2 a {
+  color: red;
+}
+
+.maincontent {
+    background: #C1FFC0 none repeat scroll 0 0;
+}
+.sidebar{
+    background: #C1FFC0 none repeat scroll 0 0;
+}
+
+.footersection {
+  background: red;
+}
+
+.footermenu ul li a {
+  color: red;
+}
+.footersection p{
+    color: #fff;
+}

@@ -1,0 +1,72 @@
+/* green color */
+.headersection {
+    background: #008000 none repeat scroll 0 0;
+    color: #fff;
+}
+
+.icon a {
+  background: #004E00 none repeat scroll 0 0;
+}
+
+.searchbtn input[type="text"] {
+  border: 1px solid #296E29;
+  width: 200px;
+  background: #3CBC3C;
+  font-size: 16px;
+  height: 20px;
+}
+
+.searchbtn input[type="submit"] {
+  border: 1px solid #004800;
+}
+
+.searchbtn input[type="submit"]:hover {
+  border: 1px solid #004800;
+}
+
+input[type="submit"]{
+    background: #008000 none repeat scroll 0 0;
+    color: #fff;
+}
+
+.searchbtn input[type="submit"]:hover{
+    background: #008000 none repeat scroll 0 0;
+    color: #fff;
+}
+
+.navsection {
+  background: none repeat scroll 0 0 #005700;
+}
+
+.navsection ul li {
+  border-left: 1px solid #005700;
+  border-right: 1px solid #005700;
+}
+
+.samesidebar h2 {
+  background: #008000 none repeat scroll 0 0;
+  border-bottom: 2px solid #60D88B;
+  color: #fff;
+}
+
+.samepost h2 a {
+  color: #008000;
+}
+
+.maincontent {
+    background: #C1FFC0 none repeat scroll 0 0;
+}
+.sidebar{
+    background: #C1FFC0 none repeat scroll 0 0;
+}
+
+.footersection {
+  background: #008000;
+}
+
+.footermenu ul li a {
+  color: #60D88B;
+}
+.footersection p{
+    color: #fff;
+}
