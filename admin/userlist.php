@@ -4,7 +4,7 @@ include"inc/sidebar.php";
 ?>
 <div class="grid_10">
 	<div class="box round first grid">
-		<h2>Post List</h2>
+		<h2>User Lists</h2>
 		<?php 
 			if(isset($_GET['userid'])){
 				$userid = $_GET['userid'];

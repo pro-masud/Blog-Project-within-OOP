@@ -1,7 +1,13 @@
 <?php 
 include"inc/header.php";
-include"inc/sidebar.php";
+include"inc/sidebar.php"; 
+$role = Sesstion::get('userRole');
+if(!$role == 1){
+   header("location: index.php");
+}
 ?>
+
+
 <div class="grid_10">
     <div class="box round first grid">
         <h2>Add New User</h2>

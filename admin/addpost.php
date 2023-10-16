@@ -16,6 +16,7 @@ include"inc/sidebar.php";
                 $body = mysqli_real_escape_string($DB -> link, $_POST['body']);
                 $tags = mysqli_real_escape_string($DB -> link, $_POST['tags']);
                 $author = mysqli_real_escape_string($DB -> link, $_POST['author']);
+                $userId = mysqli_real_escape_string($DB -> link, $_POST['userId']);
 
                 // image validation
                 $permited  = array('jpg', 'jpeg', 'png', 'gif');
@@ -28,7 +29,7 @@ include"inc/sidebar.php";
                 $unique_image = substr(md5(time()), 0, 10).'.'.$file_ext;
                 $uploaded_image = "uploads/".$unique_image;
 
-                if($title == "" || $cat == "" || $uploaded_image == "" || $body == "" || $tags == "" || $author == ""){
+                if($title == "" || $cat == "" || $uploaded_image == "" || $body == "" || $tags == "" || $author == "" || $userId == ""){
                         echo "<p class='error'>Field Mush Not be Empty !!</p>";
                 }else if ($file_size >1048567) {
                         echo "<span class='error'>Image Size should be less then 1MB! </span>";
@@ -36,7 +37,7 @@ include"inc/sidebar.php";
                         echo "<span class='error'>You can upload only:-".implode(', ', $permited)."</span>";
                 } else{
                     move_uploaded_file($file_temp, $uploaded_image);
-                    $query = "INSERT INTO blog_post (cat, title, body, image, tags, author) VALUES ('$cat','$title', '$body', '$unique_image', '$tags', '$author')";
+                    $query = "INSERT INTO blog_post (cat, title, body, image, tags, author, userid) VALUES ('$cat','$title', '$body', '$unique_image', '$tags', '$author', '$userId')";
                     $inserted_rows = $DB->insert($query);
                     if ($inserted_rows) {
                             echo "<span class='success'>Post Inserted Successfully.</span>";
@@ -108,7 +109,8 @@ include"inc/sidebar.php";
                         <label>Author</label>
                     </td>
                     <td>
-                        <input type="text" name="author" class="medium">
+                        <input type="text" value="<?php echo Sesstion::get('user_name'); ?>" class="medium">
+                        <input type="hidden" name="userId" value="<?php echo Sesstion::get('userId'); ?>" class="medium">
                     </td>
                 </tr>
                 <tr>

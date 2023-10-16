@@ -5,83 +5,26 @@ include"inc/sidebar.php";
 <?php 
 // get data url
 if(!isset($_GET['postid']) || $_GET['postid'] == null){
-    header("location: addpost.php");
+    header("location: postlist.php");
 }else{
-    $editPost = $_GET['postid'];
+    $postid = $_GET['postid'];
 }
 ?>
 <div class="grid_10">
     <div class="box round first grid">
         <h2>Edite Post</h2>
-        <?php 
-            /**
-             * set category data to database 
-             * 
-            */
-            if($_SERVER['REQUEST_METHOD'] == "POST"){
-                $cat = mysqli_real_escape_string($DB -> link, $_POST['cat']);
-                $title = mysqli_real_escape_string($DB -> link, $_POST['title']);
-                $body = mysqli_real_escape_string($DB -> link, $_POST['body']);
-                $tags = mysqli_real_escape_string($DB -> link, $_POST['tags']);
-                $author = mysqli_real_escape_string($DB -> link, $_POST['author']);
-                $userId = mysqli_real_escape_string($DB -> link, $_POST['userId']);
-
-                // image validation
-                $permited  = array('jpg', 'jpeg', 'png', 'gif');
-                $file_name = $_FILES['image']['name'];
-                $file_size = $_FILES['image']['size'];
-                $file_temp = $_FILES['image']['tmp_name'];
-
-                $div = explode('.', $file_name);
-                $file_ext = strtolower(end($div));
-                $unique_image = substr(md5(time()), 0, 10).'.'.$file_ext;
-                $uploaded_image = "uploads/".$unique_image;
-
-                if($title == "" || $cat == "" || $uploaded_image == "" || $body == "" || $tags == "" || $author == "" || $userId == ''){
-                        echo "<p class='error'>Field Mush Not be Empty !!</p>";
-                }else{
-                    if(!empty($file_name)){
-                        if ($file_size >1048567) {
-                            echo "<span class='error'>Image Size should be less then 1MB! </span>";
-                        } else if (in_array($file_ext, $permited) === false) {
-                                echo "<span class='error'>You can upload only:-".implode(', ', $permited)."</span>";
-                        } else{
-                            move_uploaded_file($file_temp, $uploaded_image);
-                            $query = "UPDATE blog_post SET cat= '$cat', title = '$title', body = '$body', image = '$unique_image', tags = '$tags', author  = '$author', userid = '$userId' WHERE id = '$editPost'";
-                            $inserted_rows = $DB->update($query);
-                            if ($inserted_rows) {
-                                    echo "<span class='success'>Post Update Successfully.</span>";
-                            }else {
-                                    echo "<span class='error'>Update Not Inserted !</span>";
-                            }
-                        }
-                    }else{
-                        $query = "UPDATE blog_post SET cat= '$cat', title = '$title', body = '$body', tags = '$tags', author  = '$author', userid = '$userId' WHERE id = '$editPost' ";
-                        $inserted_rows = $DB->update($query);
-                        if ($inserted_rows) {
-                                echo "<span class='success'>Post Update Successfully.</span>";
-                        }else {
-                                echo "<span class='error'>Update Not Inserted !</span>";
-                        }
-                    }
-                }
-            }
-        ?>
         <div class="block">
             <?php 
                 /**
                  * get all post to database
                  * 
                  * */
-                $query = "SELECT * FROM blog_post WHERE id = '$editPost' ORDER BY id DESC";
+                $query = "SELECT * FROM blog_post WHERE id = '$postid'";
                 
                 $posts = $DB -> select($query);
 
                 if($posts){
-                    while($singlePost = $posts -> fetch_assoc()){
-
-                  
-            
+                    while($singlePost = $posts -> fetch_assoc()){            
             ?>      
             <form action="" method="POST" enctype="multipart/form-data">
             <table class="form">
@@ -121,11 +64,10 @@ if(!isset($_GET['postid']) || $_GET['postid'] == null){
             
                 <tr>
                     <td>
-                        <label>Upload Image</label>
+                        <label>Images</label>
                     </td>
                     <td>
                         <img style="width=150px; height: 100px; display:block;" src="./uploads/<?php echo $singlePost['image']?>" alt="">
-                        <input name="image" type="file" />
                     </td>
                 </tr>
                 <tr>
