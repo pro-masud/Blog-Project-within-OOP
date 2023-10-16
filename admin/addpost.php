@@ -109,7 +109,7 @@ include"inc/sidebar.php";
                         <label>Author</label>
                     </td>
                     <td>
-                        <input type="text" value="<?php echo Sesstion::get('user_name'); ?>" class="medium">
+                        <input type="text" name="author" value="<?php echo Sesstion::get('user_name'); ?>" class="medium">
                         <input type="hidden" name="userId" value="<?php echo Sesstion::get('userId'); ?>" class="medium">
                     </td>
                 </tr>
