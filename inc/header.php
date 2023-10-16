@@ -15,12 +15,10 @@ include"./helpers/formats.php";
  * */ 
 $DB = new Database();
 $format = new Format();
-
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-
 <?php
 	if(isset($_GET['pageid'])){
 		$pageid = $_GET['pageid'];
@@ -54,52 +52,15 @@ $format = new Format();
 ?>
 
 	<title><?php echo TITLE; ?></title>
-	<meta name="language" content="English">
-	<meta name="description" content="It is a website about education">
-	<?php
-	if(isset($_GET['id'])){
-			$keyid = $_GET['id'];
-			/**
-			 * get all pages to database
-			 * */ 
-			$query = "SELECT * FROM blog_post WHERE id = '$keyid '";
-			$keywords = $DB -> select($query);
-	
-			if($keywords){
-				while($singlepost = $keywords -> fetch_assoc()){
-	?>
-	<meta name="keywords" content="<?php echo $singlepost['tags']; ?>">
-	<?php } } } else { ?>
-	<meta name="keywords" content="php, leravel, wordpress, c, c++, C# programming">
-	<?php } ?>
-	<meta name="author" content="Delowar">
-	<link rel="stylesheet" href="font-awesome-4.5.0/css/font-awesome.css">	
-	<link rel="stylesheet" href="css/nivo-slider.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="style.css">
-	<script src="js/jquery.js" type="text/javascript"></script>
-	<script src="js/jquery.nivo.slider.js" type="text/javascript"></script>
+	<!-- include all meta tags links -->
+	<?php include"./scripts/meta.php"; ?>
 
-<script type="text/javascript">
-$(window).load(function() {
-	$('#slider').nivoSlider({
-		effect:'random',
-		slices:10,
-		animSpeed:500,
-		pauseTime:5000,
-		startSlide:0, //Set starting Slide (0 index)
-		directionNav:false,
-		directionNavHide:false, //Only show on hover
-		controlNav:false, //1,2,3...
-		controlNavThumbs:false, //Use thumbnails for Control Nav
-		pauseOnHover:true, //Stop animation while hovering
-		manualAdvance:false, //Force manual transitions
-		captionOpacity:0.8, //Universal caption opacity
-		beforeChange: function(){},
-		afterChange: function(){},
-		slideshowEnd: function(){} //Triggers after all slides have been shown
-	});
-});
-</script>
+	<!-- include css files -->
+	<?php include"./scripts/css.php"; ?>
+	
+	<!-- include js files  -->
+	<?php include"./scripts/js.php"; ?>
+
 </head>
 
 <body>
