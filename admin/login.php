@@ -80,6 +80,9 @@ $format = new Format();
 			</div>
 		</form><!-- form -->
 		<div class="button">
+			<a href="forgetpass.php">Forget Password</a>
+		</div><!-- button -->
+		<div class="button">
 			<a href="#">Training with live project</a>
 		</div><!-- button -->
 	</section><!-- content -->
