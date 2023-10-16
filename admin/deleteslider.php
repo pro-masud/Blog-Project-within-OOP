@@ -36,7 +36,7 @@ if(!isset($_GET['sliderid']) || $_GET['sliderid'] == null){
 
     if($getSlider){
         while($delSliderImage = $getSlider -> fetch_assoc()){
-            echo $delImage = "./uploads/slider" . $delSliderImage['image'];
+            echo $delImage = "./uploads/slider/" . $delSliderImage['image'];
 
             /* remove image for database */
             unlink($delImage);
